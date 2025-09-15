@@ -643,92 +643,63 @@ const Dashboard = () => {
 
           {/* Interactive Demographics Charts */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            {/* Age Distribution */}
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+            {/* Age Distribution Doughnut Chart */}
+            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
               <h4 className="font-semibold text-gray-900 mb-4 flex items-center">
                 <BarChart3 className="mr-2 h-4 w-4 text-blue-600" />
-                Distribusi Usia Responden
+                Distribusi Usia Responden (Doughnut Chart)
               </h4>
-              <div className="space-y-3">
-                {researchData.demographicData.ageDistribution.map((age, index) => (
-                  <div key={index} className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <span className="font-medium text-gray-700 w-16">{age.ageRange}</span>
-                      <div className="bg-blue-200 rounded-full h-6 relative overflow-hidden" style={{width: '200px'}}>
-                        <div 
-                          className="bg-blue-500 h-full rounded-full transition-all duration-300"
-                          style={{width: `${(age.percentage / 35) * 100}%`}}
-                        ></div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-sm font-semibold text-gray-900">{age.count} ({age.percentage}%)</div>
-                      <div className="text-xs text-gray-600">MLLA: {age.mllaUsers} | Non: {age.nonUsers}</div>
-                    </div>
-                  </div>
-                ))}
+              <div className="h-64">
+                <canvas ref={ageChartRef}></canvas>
+              </div>
+              <div className="mt-4 text-sm text-gray-600 bg-blue-50 p-3 rounded">
+                <strong>Insight:</strong> Kelompok usia 20-21 tahun mendominasi (33.5%) dengan tingkat adopsi MLLA tertinggi.
               </div>
             </div>
 
-            {/* Gender Distribution */}
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+            {/* Gender Pie Chart */}
+            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
               <h4 className="font-semibold text-gray-900 mb-4 flex items-center">
                 <Users className="mr-2 h-4 w-4 text-pink-600" />
-                Distribusi Jenis Kelamin
+                Distribusi Jenis Kelamin (Pie Chart)
               </h4>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-3 bg-pink-50 rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-4 h-4 bg-pink-500 rounded-full"></div>
-                    <span className="font-medium">Perempuan</span>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-lg font-bold text-pink-600">{researchData.demographicData.genderDistribution.perempuan.count}</div>
-                    <div className="text-sm text-gray-600">{researchData.demographicData.genderDistribution.perempuan.percentage}%</div>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-                    <span className="font-medium">Laki-laki</span>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-lg font-bold text-blue-600">{researchData.demographicData.genderDistribution.laki.count}</div>
-                    <div className="text-sm text-gray-600">{researchData.demographicData.genderDistribution.laki.percentage}%</div>
-                  </div>
-                </div>
+              <div className="h-64">
+                <canvas ref={genderChartRef}></canvas>
               </div>
-              <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                <h5 className="text-sm font-semibold text-gray-700 mb-2">Tingkat Adopsi MLLA:</h5>
-                <div className="text-xs text-gray-600 space-y-1">
-                  <div>• Perempuan: {researchData.demographicData.genderDistribution.perempuan.mllaUsers}/{researchData.demographicData.genderDistribution.perempuan.count} = {((researchData.demographicData.genderDistribution.perempuan.mllaUsers/researchData.demographicData.genderDistribution.perempuan.count)*100).toFixed(1)}%</div>
-                  <div>• Laki-laki: {researchData.demographicData.genderDistribution.laki.mllaUsers}/{researchData.demographicData.genderDistribution.laki.count} = {((researchData.demographicData.genderDistribution.laki.mllaUsers/researchData.demographicData.genderDistribution.laki.count)*100).toFixed(1)}%</div>
-                </div>
+              <div className="mt-4 text-sm text-gray-600 bg-pink-50 p-3 rounded">
+                <strong>Insight:</strong> Perempuan (59.4%) lebih dominan dengan tingkat adopsi MLLA yang relatif seimbang antar gender.
               </div>
             </div>
           </div>
 
-          {/* Study Program Distribution */}
-          <div className="bg-white p-6 rounded-lg border border-gray-200 mb-6">
-            <h4 className="font-semibold text-gray-900 mb-4 flex items-center">
-              <BarChart3 className="mr-2 h-4 w-4 text-green-600" />
-              Distribusi Program Studi (Top 10)
-            </h4>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {researchData.demographicData.studyProgramDistribution.map((program, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                  <div className="flex-1">
-                    <div className="font-medium text-gray-800 text-sm">{program.program}</div>
-                    <div className="text-xs text-gray-600">
-                      MLLA Users: {program.mllaUsers} | Non-Users: {program.nonUsers}
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="font-bold text-green-600">{program.count}</div>
-                    <div className="text-xs text-gray-500">{program.percentage}%</div>
-                  </div>
-                </div>
-              ))}
+          {/* Program Study and Usage Charts */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            {/* Study Program Horizontal Bar Chart */}
+            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+              <h4 className="font-semibold text-gray-900 mb-4 flex items-center">
+                <BarChart3 className="mr-2 h-4 w-4 text-green-600" />
+                Top 8 Program Studi (Horizontal Bar Chart)
+              </h4>
+              <div className="h-72">
+                <canvas ref={programChartRef}></canvas>
+              </div>
+              <div className="mt-4 text-sm text-gray-600 bg-green-50 p-3 rounded">
+                <strong>Insight:</strong> Program Teknik Informatika tertinggi (45), Bahasa Inggris menunjukkan adopsi MLLA terbaik.
+              </div>
+            </div>
+
+            {/* MLLA Usage Polar Area Chart */}
+            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+              <h4 className="font-semibold text-gray-900 mb-4 flex items-center">
+                <Users className="mr-2 h-4 w-4 text-purple-600" />
+                Status Penggunaan MLLA (Polar Area Chart)
+              </h4>
+              <div className="h-72">
+                <canvas ref={usageChartRef}></canvas>
+              </div>
+              <div className="mt-4 text-sm text-gray-600 bg-purple-50 p-3 rounded">
+                <strong>Insight:</strong> 74.4% responden telah menggunakan MLLA, menunjukkan tingkat adopsi yang cukup tinggi.
+              </div>
             </div>
           </div>
 
