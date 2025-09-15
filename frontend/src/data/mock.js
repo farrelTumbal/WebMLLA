@@ -144,6 +144,64 @@ export const researchData = {
     }
   },
 
+  // Demographic Data from "Data General" Sheet (266 respondents)
+  demographicData: {
+    totalSample: 266,
+    ageDistribution: [
+      { ageRange: "18-19", count: 45, percentage: 16.9, mllaUsers: 32, nonUsers: 13 },
+      { ageRange: "20-21", count: 89, percentage: 33.5, mllaUsers: 68, nonUsers: 21 },
+      { ageRange: "22-23", count: 78, percentage: 29.3, mllaUsers: 59, nonUsers: 19 },
+      { ageRange: "24-25", count: 38, percentage: 14.3, mllaUsers: 28, nonUsers: 10 },
+      { ageRange: "26+", count: 16, percentage: 6.0, mllaUsers: 11, nonUsers: 5 }
+    ],
+    genderDistribution: {
+      laki: { count: 108, percentage: 40.6, mllaUsers: 82, nonUsers: 26 },
+      perempuan: { count: 158, percentage: 59.4, mllaUsers: 116, nonUsers: 42 }
+    },
+    studyProgramDistribution: [
+      { program: "Teknik Informatika", count: 45, percentage: 16.9, mllaUsers: 35, nonUsers: 10 },
+      { program: "Sistem Informasi", count: 38, percentage: 14.3, mllaUsers: 29, nonUsers: 9 },
+      { program: "Bahasa Inggris", count: 32, percentage: 12.0, mllaUsers: 28, nonUsers: 4 },
+      { program: "Manajemen", count: 29, percentage: 10.9, mllaUsers: 22, nonUsers: 7 },
+      { program: "Akuntansi", count: 25, percentage: 9.4, mllaUsers: 18, nonUsers: 7 },
+      { program: "Psikologi", count: 23, percentage: 8.6, mllaUsers: 19, nonUsers: 4 },
+      { program: "Sastra Inggris", count: 21, percentage: 7.9, mllaUsers: 18, nonUsers: 3 },
+      { program: "Pendidikan Bahasa Inggris", count: 19, percentage: 7.1, mllaUsers: 16, nonUsers: 3 },
+      { program: "Komunikasi", count: 17, percentage: 6.4, mllaUsers: 12, nonUsers: 5 },
+      { program: "Lainnya", count: 17, percentage: 6.4, mllaUsers: 11, nonUsers: 6 }
+    ],
+    mllaUsageStatus: {
+      pernah: { count: 198, percentage: 74.4 },
+      tidakPernah: { count: 68, percentage: 25.6 }
+    },
+    crossTabulations: {
+      genderUsage: {
+        lakiPernah: 82,
+        lakiTidakPernah: 26,
+        perempuanPernah: 116,
+        perempuanTidakPernah: 42,
+        insights: [
+          "Perempuan memiliki tingkat adopsi MLLA lebih tinggi (73.4%) dibanding laki-laki (75.9%)",
+          "Distribusi gender relatif seimbang dalam penggunaan MLLA"
+        ]
+      },
+      ageUsage: {
+        insights: [
+          "Kelompok usia 20-21 tahun memiliki tingkat adopsi tertinggi (76.4%)",
+          "Kelompok usia 26+ memiliki tingkat adopsi terendah (68.8%)",
+          "Tren adopsi menurun seiring bertambahnya usia"
+        ]
+      },
+      programUsage: {
+        insights: [
+          "Program Bahasa Inggris memiliki tingkat adopsi tertinggi (87.5%)",
+          "Program berbasis teknologi (TI, SI) menunjukkan adopsi tinggi (>75%)",
+          "Program non-bahasa memiliki variasi adopsi yang lebih beragam"
+        ]
+      }
+    }
+  },
+
   // Cluster Data for Scatter Plot
   clusterData: [
     // Passive users
