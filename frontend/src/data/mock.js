@@ -63,12 +63,86 @@ export const researchData = {
     [0.678, 0.755, 0.632, 1.00]   // Acceptance
   ],
 
-  // SEM Path Coefficients
+  // SEM Path Coefficients dengan penjelasan untuk pembaca awam
   semPaths: [
-    { from: 'Engagement', to: 'Usability', coefficient: 0.319 },
-    { from: 'Retention', to: 'Usability', coefficient: 0.379 },
-    { from: 'Usability', to: 'Acceptance', coefficient: 0.755 }
+    { 
+      from: 'Engagement', 
+      to: 'Usability', 
+      coefficient: 0.319,
+      explanation: "Setiap peningkatan 1 unit pada tingkat keterlibatan (engagement) pengguna akan meningkatkan persepsi kemudahan penggunaan (usability) sebesar 0.319 unit"
+    },
+    { 
+      from: 'Retention', 
+      to: 'Usability', 
+      coefficient: 0.379,
+      explanation: "Setiap peningkatan 1 unit pada niat untuk terus menggunakan (retention) akan meningkatkan persepsi kemudahan penggunaan sebesar 0.379 unit"
+    },
+    { 
+      from: 'Usability', 
+      to: 'Acceptance', 
+      coefficient: 0.755,
+      explanation: "Setiap peningkatan 1 unit pada kemudahan penggunaan (usability) akan meningkatkan tingkat penerimaan (acceptance) sebesar 0.755 unit - ini adalah hubungan terkuat"
+    }
   ],
+
+  // Penjelasan Variabel Greek Alphabet untuk pembaca awam
+  statisticalExplanations: {
+    beta: {
+      symbol: "β",
+      name: "Beta (Koefisien Jalur)",
+      explanation: "Beta menunjukkan seberapa kuat pengaruh satu variabel terhadap variabel lainnya. Nilai beta berkisar 0-1, dimana semakin mendekati 1 berarti pengaruhnya semakin kuat.",
+      interpretation: "Contoh: β = 0.755 berarti jika kemudahan penggunaan meningkat 1 poin, maka penerimaan akan meningkat 0.755 poin"
+    },
+    alpha: {
+      symbol: "α",
+      name: "Alpha Cronbach (Reliabilitas)",
+      explanation: "Alpha Cronbach mengukur konsistensi internal dari pertanyaan-pertanyaan dalam kuesioner. Nilai 0.70-0.95 menunjukkan instrumen yang reliabel.",
+      interpretation: "Contoh: α = 0.875 berarti 87.5% dari variasi jawaban mencerminkan konstruk yang diukur, sisanya adalah kesalahan pengukuran"
+    },
+    rho: {
+      symbol: "ρ",
+      name: "Rho Spearman (Korelasi)",
+      explanation: "Rho Spearman mengukur kekuatan hubungan antara dua variabel. Nilai berkisar -1 sampai +1, dimana 0 berarti tidak ada hubungan.",
+      interpretation: "Contoh: ρ = 0.755 berarti ada hubungan positif yang kuat antara dua variabel (75.5% kekuatan hubungan)"
+    }
+  },
+
+  // Detailed Analysis from Excel Sheets
+  detailedAnalysis: {
+    userVsNonUser: {
+      title: "Perbandingan Mendalam: Pengguna MLLA vs Non-Pengguna",
+      findings: [
+        {
+          dimension: "Engagement (Keterlibatan)",
+          users: 2.85,
+          nonUsers: 4.18,
+          insight: "Non-pengguna memiliki ekspektasi keterlibatan 46% lebih tinggi dari pengguna aktual, menunjukkan gap antara harapan dan realitas",
+          implication: "Aplikasi MLLA gagal memenuhi ekspektasi awal pengguna dalam hal keterlibatan"
+        },
+        {
+          dimension: "Usability (Kemudahan Penggunaan)",
+          users: 2.72,
+          nonUsers: 3.45,
+          insight: "Non-pengguna mengharapkan kemudahan penggunaan 27% lebih tinggi dari yang dialami pengguna aktual",
+          implication: "Interface dan navigasi aplikasi masih perlu perbaikan untuk memenuhi ekspektasi pengguna"
+        },
+        {
+          dimension: "Retention (Niat Berkelanjutan)",
+          users: 2.68,
+          nonUsers: 2.15,
+          insight: "Paradoks: Pengguna aktual memiliki niat berkelanjutan 25% lebih tinggi dari non-pengguna",
+          implication: "Setelah menggunakan, pengguna lebih realistis namun masih memiliki niat untuk melanjutkan"
+        },
+        {
+          dimension: "Acceptance (Penerimaan)",
+          users: 2.91,
+          nonUsers: 3.82,
+          insight: "Non-pengguna memiliki tingkat penerimaan 31% lebih tinggi, menunjukkan ekspektasi berlebihan",
+          implication: "Perlu mengelola ekspektasi pengguna baru dan meningkatkan pengalaman pengguna aktual"
+        }
+      ]
+    }
+  },
 
   // Cluster Data for Scatter Plot
   clusterData: [
