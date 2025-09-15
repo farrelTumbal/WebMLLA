@@ -52,7 +52,7 @@ const HomePage = () => {
         <Link to="/dashboard">
           <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
             <BarChart3 className="mr-2 h-5 w-5" />
-            View Interactive Dashboard
+            View Quantitative Insights
           </Button>
         </Link>
       </div>
