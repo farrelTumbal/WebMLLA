@@ -313,7 +313,108 @@ const Dashboard = () => {
         </CardContent>
       </Card>
 
-      {/* SEM Results */}
+      {/* Detailed Excel Data Analysis */}
+      <Card className="border-0 shadow-lg mb-8">
+        <CardHeader>
+          <CardTitle className="flex items-center text-xl">
+            <BarChart3 className="mr-3 h-6 w-6 text-blue-600" />
+            Analisis Mendalam Data Excel: Pengguna vs Non-Pengguna MLLA
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="mb-6 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+            <h4 className="font-semibold text-blue-900 mb-2">Sumber Data:</h4>
+            <p className="text-blue-800 text-sm">
+              • <strong>Sheet "Data Pernah":</strong> {researchData.users} partisipan yang pernah menggunakan MLLA<br/>
+              • <strong>Sheet "Data Tidak Pernah":</strong> {researchData.nonUsers} partisipan yang tidak pernah menggunakan MLLA
+            </p>
+          </div>
+          
+          <div className="space-y-6">
+            {researchData.detailedAnalysis.userVsNonUser.findings.map((finding, index) => (
+              <div key={index} className="border rounded-lg p-6 bg-gradient-to-r from-gray-50 to-white">
+                <div className="flex justify-between items-center mb-4">
+                  <h4 className="text-lg font-semibold text-gray-900">{finding.dimension}</h4>
+                  <div className="flex gap-4">
+                    <Badge variant="secondary" className="bg-green-100 text-green-800">
+                      Pengguna: {finding.users}
+                    </Badge>
+                    <Badge variant="secondary" className="bg-orange-100 text-orange-800">
+                      Non-Pengguna: {finding.nonUsers}
+                    </Badge>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <h5 className="font-medium text-blue-900 mb-2">📊 Temuan Statistik</h5>
+                    <p className="text-sm text-blue-800">{finding.insight}</p>
+                  </div>
+                  <div className="bg-purple-50 p-4 rounded-lg">
+                    <h5 className="font-medium text-purple-900 mb-2">💡 Implikasi Praktis</h5>
+                    <p className="text-sm text-purple-800">{finding.implication}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+            <h4 className="font-semibold text-yellow-900 mb-2">🔍 Kesimpulan Analisis Data Excel:</h4>
+            <p className="text-yellow-800 text-sm">
+              Terdapat gap signifikan antara ekspektasi non-pengguna dan realitas yang dialami pengguna aktual. 
+              Non-pengguna cenderung memiliki ekspektasi berlebihan pada semua dimensi UX kecuali retention, 
+              yang menunjukkan perlunya strategi onboarding yang lebih realistis dan peningkatan pengalaman pengguna.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Sample Participant Data Analysis */}
+      <Card className="border-0 shadow-lg mb-8">
+        <CardHeader>
+          <CardTitle>Contoh Data Partisipan (Sample dari Sheet Excel)</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* MLLA Users Sample */}
+            <div>
+              <h4 className="font-semibold text-green-700 mb-3 flex items-center">
+                <Users className="mr-2 h-4 w-4" />
+                Pengguna MLLA (Data Pernah)
+              </h4>
+              <div className="space-y-2">
+                {researchData.sampleParticipants.users.map((participant, index) => (
+                  <div key={index} className="text-xs bg-green-50 p-2 rounded border">
+                    <strong>{participant.id}</strong> | App: {participant.app} | 
+                    E:{participant.engagement} U:{participant.usability} R:{participant.retention} A:{participant.acceptance}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Non-Users Sample */}
+            <div>
+              <h4 className="font-semibold text-orange-700 mb-3 flex items-center">
+                <Users className="mr-2 h-4 w-4" />
+                Non-Pengguna MLLA (Data Tidak Pernah)
+              </h4>
+              <div className="space-y-2">
+                {researchData.sampleParticipants.nonUsers.map((participant, index) => (
+                  <div key={index} className="text-xs bg-orange-50 p-2 rounded border">
+                    <strong>{participant.id}</strong> | 
+                    E:{participant.engagement} U:{participant.usability} R:{participant.retention} A:{participant.acceptance}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-4 text-sm text-gray-600 bg-gray-50 p-3 rounded">
+            <strong>Keterangan:</strong> E=Engagement, U=Usability, R=Retention, A=Acceptance (Skala 1-5)
+          </div>
+        </CardContent>
+      </Card>
       <Card className="border-0 shadow-lg">
         <CardHeader>
           <CardTitle>Structural Equation Model - Path Coefficients</CardTitle>
