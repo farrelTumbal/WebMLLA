@@ -180,7 +180,7 @@ const HomePage = () => {
           <Link to="/dashboard">
             <Button size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-gray-100">
               <BarChart3 className="mr-2 h-5 w-5" />
-              Interactive Dashboard
+              Quantitative Insights
             </Button>
           </Link>
           <Link to="/insights">
