@@ -46,6 +46,10 @@ const Dashboard = () => {
     if (radarChartRef.current?.chart) radarChartRef.current.chart.destroy();
     if (scatterChartRef.current?.chart) scatterChartRef.current.chart.destroy();
     if (heatmapRef.current?.chart) heatmapRef.current.chart.destroy();
+    if (ageChartRef.current?.chart) ageChartRef.current.chart.destroy();
+    if (genderChartRef.current?.chart) genderChartRef.current.chart.destroy();
+    if (programChartRef.current?.chart) programChartRef.current.chart.destroy();
+    if (usageChartRef.current?.chart) usageChartRef.current.chart.destroy();
 
     const currentData = researchData.uxDimensions[selectedFilter];
     
