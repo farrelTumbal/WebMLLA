@@ -415,7 +415,183 @@ const Dashboard = () => {
           </div>
         </CardContent>
       </Card>
-      {/* Enhanced SEM Results with Greek Alphabet Explanations */}
+      {/* Demographic Analysis from Data General Sheet */}
+      <Card className="border-0 shadow-lg mb-8">
+        <CardHeader>
+          <CardTitle className="flex items-center text-xl">
+            <Users className="mr-3 h-6 w-6 text-purple-600" />
+            Analisis Demografis Responden (Sheet "Data General" - 266 Partisipan)
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="mb-6 p-4 bg-purple-50 rounded-lg border-l-4 border-purple-400">
+            <h4 className="font-semibold text-purple-900 mb-2">Sumber Data Demografis:</h4>
+            <p className="text-purple-800 text-sm">
+              Data demografis lengkap dari <strong>{researchData.demographicData.totalSample} responden</strong> 
+              dalam sheet "Data General" mencakup distribusi usia, jenis kelamin, program studi, dan status penggunaan MLLA.
+            </p>
+          </div>
+
+          {/* Demographics Overview Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600">{researchData.demographicData.totalSample}</div>
+                <div className="text-sm text-blue-700">Total Responden</div>
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-600">{researchData.demographicData.mllaUsageStatus.pernah.percentage}%</div>
+                <div className="text-sm text-green-700">Pengguna MLLA</div>
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-lg border border-orange-200">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-orange-600">{researchData.demographicData.genderDistribution.perempuan.percentage}%</div>
+                <div className="text-sm text-orange-700">Perempuan</div>
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-4 rounded-lg border border-indigo-200">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-indigo-600">20-21</div>
+                <div className="text-sm text-indigo-700">Usia Dominan</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Interactive Demographics Charts */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            {/* Age Distribution */}
+            <div className="bg-white p-6 rounded-lg border border-gray-200">
+              <h4 className="font-semibold text-gray-900 mb-4 flex items-center">
+                <BarChart3 className="mr-2 h-4 w-4 text-blue-600" />
+                Distribusi Usia Responden
+              </h4>
+              <div className="space-y-3">
+                {researchData.demographicData.ageDistribution.map((age, index) => (
+                  <div key={index} className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <span className="font-medium text-gray-700 w-16">{age.ageRange}</span>
+                      <div className="bg-blue-200 rounded-full h-6 relative overflow-hidden" style={{width: '200px'}}>
+                        <div 
+                          className="bg-blue-500 h-full rounded-full transition-all duration-300"
+                          style={{width: `${(age.percentage / 35) * 100}%`}}
+                        ></div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-sm font-semibold text-gray-900">{age.count} ({age.percentage}%)</div>
+                      <div className="text-xs text-gray-600">MLLA: {age.mllaUsers} | Non: {age.nonUsers}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Gender Distribution */}
+            <div className="bg-white p-6 rounded-lg border border-gray-200">
+              <h4 className="font-semibold text-gray-900 mb-4 flex items-center">
+                <Users className="mr-2 h-4 w-4 text-pink-600" />
+                Distribusi Jenis Kelamin
+              </h4>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between p-3 bg-pink-50 rounded-lg">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-4 h-4 bg-pink-500 rounded-full"></div>
+                    <span className="font-medium">Perempuan</span>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-lg font-bold text-pink-600">{researchData.demographicData.genderDistribution.perempuan.count}</div>
+                    <div className="text-sm text-gray-600">{researchData.demographicData.genderDistribution.perempuan.percentage}%</div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                    <span className="font-medium">Laki-laki</span>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-lg font-bold text-blue-600">{researchData.demographicData.genderDistribution.laki.count}</div>
+                    <div className="text-sm text-gray-600">{researchData.demographicData.genderDistribution.laki.percentage}%</div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                <h5 className="text-sm font-semibold text-gray-700 mb-2">Tingkat Adopsi MLLA:</h5>
+                <div className="text-xs text-gray-600 space-y-1">
+                  <div>• Perempuan: {researchData.demographicData.genderDistribution.perempuan.mllaUsers}/{researchData.demographicData.genderDistribution.perempuan.count} = {((researchData.demographicData.genderDistribution.perempuan.mllaUsers/researchData.demographicData.genderDistribution.perempuan.count)*100).toFixed(1)}%</div>
+                  <div>• Laki-laki: {researchData.demographicData.genderDistribution.laki.mllaUsers}/{researchData.demographicData.genderDistribution.laki.count} = {((researchData.demographicData.genderDistribution.laki.mllaUsers/researchData.demographicData.genderDistribution.laki.count)*100).toFixed(1)}%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Study Program Distribution */}
+          <div className="bg-white p-6 rounded-lg border border-gray-200 mb-6">
+            <h4 className="font-semibold text-gray-900 mb-4 flex items-center">
+              <BarChart3 className="mr-2 h-4 w-4 text-green-600" />
+              Distribusi Program Studi (Top 10)
+            </h4>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {researchData.demographicData.studyProgramDistribution.map((program, index) => (
+                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <div className="flex-1">
+                    <div className="font-medium text-gray-800 text-sm">{program.program}</div>
+                    <div className="text-xs text-gray-600">
+                      MLLA Users: {program.mllaUsers} | Non-Users: {program.nonUsers}
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="font-bold text-green-600">{program.count}</div>
+                    <div className="text-xs text-gray-500">{program.percentage}%</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Cross-Tabulation Insights */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border border-blue-200">
+              <h4 className="font-semibold text-blue-900 mb-3">📊 Insight Usia & MLLA</h4>
+              <div className="space-y-2 text-sm text-blue-800">
+                {researchData.demographicData.crossTabulations.ageUsage.insights.map((insight, index) => (
+                  <p key={index}>• {insight}</p>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-lg border border-pink-200">
+              <h4 className="font-semibold text-pink-900 mb-3">👥 Insight Gender & MLLA</h4>
+              <div className="space-y-2 text-sm text-pink-800">
+                {researchData.demographicData.crossTabulations.genderUsage.insights.map((insight, index) => (
+                  <p key={index}>• {insight}</p>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
+              <h4 className="font-semibold text-green-900 mb-3">🎓 Insight Program & MLLA</h4>
+              <div className="space-y-2 text-sm text-green-800">
+                {researchData.demographicData.crossTabulations.programUsage.insights.map((insight, index) => (
+                  <p key={index}>• {insight}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-lg">
+            <h4 className="font-semibold text-indigo-900 mb-2">🔍 Kesimpulan Analisis Demografis</h4>
+            <div className="text-sm text-indigo-800 space-y-2">
+              <p>• <strong>Profil Dominan:</strong> Mahasiswa perempuan (59.4%) berusia 20-21 tahun dari program teknologi dan bahasa</p>
+              <p>• <strong>Tingkat Adopsi:</strong> 74.4% responden telah menggunakan MLLA dengan variasi berdasarkan program studi</p>
+              <p>• <strong>Pola Penggunaan:</strong> Program bahasa menunjukkan adopsi tertinggi, mengindikasikan relevansi MLLA untuk learning bahasa</p>
+              <p>• <strong>Gender Balance:</strong> Tidak ada perbedaan signifikan tingkat adopsi MLLA antara laki-laki dan perempuan</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
       <Card className="border-0 shadow-lg mb-8">
         <CardHeader>
           <CardTitle>Penjelasan Hasil Structural Equation Model (SEM) untuk Pembaca Awam</CardTitle>
