@@ -164,6 +164,179 @@ const Dashboard = () => {
         }
       });
     }
+    
+    // Demographic Charts
+    initializeDemographicCharts();
+  };
+
+  const initializeDemographicCharts = () => {
+    if (!window.Chart) return;
+
+    // Age Distribution Doughnut Chart
+    if (ageChartRef.current) {
+      ageChartRef.current.chart = new window.Chart(ageChartRef.current, {
+        type: 'doughnut',
+        data: {
+          labels: researchData.demographicData.ageDistribution.map(age => age.ageRange + ' tahun'),
+          datasets: [{
+            data: researchData.demographicData.ageDistribution.map(age => age.count),
+            backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'],
+            borderColor: ['#2563eb', '#059669', '#d97706', '#dc2626', '#7c3aed'],
+            borderWidth: 2,
+            hoverOffset: 10
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { padding: 15, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const age = researchData.demographicData.ageDistribution[context.dataIndex];
+                  return `${context.label}: ${age.count} (${age.percentage}%)`;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Gender Pie Chart
+    if (genderChartRef.current) {
+      genderChartRef.current.chart = new window.Chart(genderChartRef.current, {
+        type: 'pie',
+        data: {
+          labels: ['Perempuan', 'Laki-laki'],
+          datasets: [{
+            data: [
+              researchData.demographicData.genderDistribution.perempuan.count,
+              researchData.demographicData.genderDistribution.laki.count
+            ],
+            backgroundColor: ['#ec4899', '#3b82f6'],
+            borderColor: ['#db2777', '#2563eb'],
+            borderWidth: 3,
+            hoverOffset: 15
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { padding: 15, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                  const percentage = ((context.raw / total) * 100).toFixed(1);
+                  return `${context.label}: ${context.raw} (${percentage}%)`;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Program Study Horizontal Bar Chart
+    if (programChartRef.current) {
+      programChartRef.current.chart = new window.Chart(programChartRef.current, {
+        type: 'bar',
+        data: {
+          labels: researchData.demographicData.studyProgramDistribution.slice(0, 8).map(p => p.program),
+          datasets: [{
+            label: 'MLLA Users',
+            data: researchData.demographicData.studyProgramDistribution.slice(0, 8).map(p => p.mllaUsers),
+            backgroundColor: '#10b981',
+            borderColor: '#059669',
+            borderWidth: 1
+          }, {
+            label: 'Non-Users',
+            data: researchData.demographicData.studyProgramDistribution.slice(0, 8).map(p => p.nonUsers),
+            backgroundColor: '#f59e0b',
+            borderColor: '#d97706',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'y',
+          scales: {
+            x: {
+              stacked: true,
+              grid: { color: '#f1f5f9' },
+              ticks: { color: '#64748b' }
+            },
+            y: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { color: '#64748b', font: { size: 11 } }
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: { usePointStyle: true, padding: 15 }
+            }
+          }
+        }
+      });
+    }
+
+    // MLLA Usage Status Polar Area Chart
+    if (usageChartRef.current) {
+      usageChartRef.current.chart = new window.Chart(usageChartRef.current, {
+        type: 'polarArea',
+        data: {
+          labels: ['Pengguna MLLA', 'Non-Pengguna MLLA'],
+          datasets: [{
+            data: [
+              researchData.demographicData.mllaUsageStatus.pernah.count,
+              researchData.demographicData.mllaUsageStatus.tidakPernah.count
+            ],
+            backgroundColor: ['rgba(16, 185, 129, 0.7)', 'rgba(245, 158, 11, 0.7)'],
+            borderColor: ['#10b981', '#f59e0b'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { padding: 15, usePointStyle: true }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const usageData = context.dataIndex === 0 ? 
+                    researchData.demographicData.mllaUsageStatus.pernah :
+                    researchData.demographicData.mllaUsageStatus.tidakPernah;
+                  return `${context.label}: ${context.raw} (${usageData.percentage}%)`;
+                }
+              }
+            }
+          },
+          scales: {
+            r: {
+              grid: { color: '#f1f5f9' },
+              pointLabels: { color: '#64748b' },
+              ticks: { color: '#64748b', backdropColor: 'rgba(255, 255, 255, 0.8)' }
+            }
+          }
+        }
+      });
+    }
   };
 
   const handleExport = (type) => {
