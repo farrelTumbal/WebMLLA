@@ -415,29 +415,59 @@ const Dashboard = () => {
           </div>
         </CardContent>
       </Card>
-      <Card className="border-0 shadow-lg">
+      {/* Enhanced SEM Results with Greek Alphabet Explanations */}
+      <Card className="border-0 shadow-lg mb-8">
         <CardHeader>
-          <CardTitle>Structural Equation Model - Path Coefficients</CardTitle>
+          <CardTitle>Penjelasan Hasil Structural Equation Model (SEM) untuk Pembaca Awam</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
-            {researchData.semPaths.map((path, index) => (
-              <div key={index} className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
-                <div className="flex items-center space-x-4">
-                  <span className="font-medium text-gray-700">{path.from}</span>
-                  <span className="text-blue-600">→</span>
-                  <span className="font-medium text-gray-700">{path.to}</span>
+          {/* Statistical Terms Explanation */}
+          <div className="mb-6 space-y-4">
+            <h4 className="text-lg font-semibold text-gray-900 mb-4">🔤 Penjelasan Notasi Ilmiah (Greek Alphabet)</h4>
+            {Object.entries(researchData.statisticalExplanations).map(([key, explanation]) => (
+              <div key={key} className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="flex items-center mb-2">
+                  <span className="text-2xl font-bold text-blue-600 mr-3">{explanation.symbol}</span>
+                  <h5 className="font-semibold text-blue-900">{explanation.name}</h5>
                 </div>
-                <Badge variant="secondary" className="bg-blue-100 text-blue-800">
-                  β = {path.coefficient.toFixed(3)}
-                </Badge>
+                <p className="text-sm text-gray-700 mb-2">{explanation.explanation}</p>
+                <div className="bg-white p-2 rounded border-l-4 border-blue-400">
+                  <p className="text-xs text-blue-800"><strong>Contoh Interpretasi:</strong> {explanation.interpretation}</p>
+                </div>
               </div>
             ))}
           </div>
-          <p className="text-sm text-gray-600 mt-4">
-            Structural equation modeling reveals that Usability is the strongest predictor of Acceptance (β = 0.755), 
-            followed by moderate influences from Retention (β = 0.379) and Engagement (β = 0.319) on Usability.
-          </p>
+
+          {/* SEM Path Analysis */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-gray-900">📈 Analisis Jalur SEM (Path Analysis)</h4>
+            {researchData.semPaths.map((path, index) => (
+              <div key={index} className="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center space-x-4">
+                    <span className="font-medium text-gray-700">{path.from}</span>
+                    <span className="text-indigo-600 text-xl">→</span>
+                    <span className="font-medium text-gray-700">{path.to}</span>
+                  </div>
+                  <Badge variant="secondary" className="bg-indigo-100 text-indigo-800">
+                    β = {path.coefficient.toFixed(3)}
+                  </Badge>
+                </div>
+                <div className="bg-white p-3 rounded border-l-4 border-indigo-400">
+                  <p className="text-sm text-gray-700">{path.explanation}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg">
+            <h4 className="font-semibold text-green-900 mb-2">🎯 Kesimpulan Utama SEM</h4>
+            <div className="space-y-2 text-sm text-green-800">
+              <p>• <strong>Usability adalah kunci utama:</strong> Kemudahan penggunaan memiliki pengaruh terkuat terhadap penerimaan (β = 0.755)</p>
+              <p>• <strong>Retention lebih penting dari Engagement:</strong> Niat berkelanjutan (β = 0.379) lebih mempengaruhi usability dibanding keterlibatan (β = 0.319)</p>
+              <p>• <strong>Strategi prioritas:</strong> Fokus perbaikan pada usability akan memberikan dampak terbesar pada penerimaan pengguna</p>
+            </div>
+          </div>
         </CardContent>
       </Card>
     </div>
