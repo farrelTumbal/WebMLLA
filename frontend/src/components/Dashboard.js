@@ -12,6 +12,10 @@ const Dashboard = () => {
   const radarChartRef = useRef(null);
   const scatterChartRef = useRef(null);
   const heatmapRef = useRef(null);
+  const ageChartRef = useRef(null);
+  const genderChartRef = useRef(null);
+  const programChartRef = useRef(null);
+  const usageChartRef = useRef(null);
 
   // Load Chart.js
   useEffect(() => {
