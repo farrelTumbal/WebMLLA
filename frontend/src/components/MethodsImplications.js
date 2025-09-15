@@ -233,7 +233,169 @@ const MethodsImplications = () => {
         ))}
       </div>
 
-      {/* GIS-MLLA Framework */}
+      {/* Conclusion and Triangulation Results */}
+      <Card className="border-0 shadow-lg mb-8">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold text-gray-900">
+            Kesimpulan Penelitian dan Hasil Triangulasi
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-6">
+            {/* Main Conclusions */}
+            <div>
+              <h3 className="text-lg font-semibold text-blue-900 mb-4 flex items-center">
+                <Target className="mr-2 h-5 w-5" />
+                Kesimpulan Utama Penelitian
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="p-4 bg-red-50 border-l-4 border-red-400 rounded-r-lg">
+                    <h4 className="font-semibold text-red-900 mb-2">Pola Engagement yang Menurun</h4>
+                    <p className="text-sm text-red-800">
+                      Pengguna menunjukkan antusiasme tinggi pada awal penggunaan namun mengalami penurunan drastis dalam 1-2 minggu, 
+                      mengakibatkan tingkat retensi yang rendah.
+                    </p>
+                  </div>
+                  <div className="p-4 bg-orange-50 border-l-4 border-orange-400 rounded-r-lg">
+                    <h4 className="font-semibold text-orange-900 mb-2">Keterbatasan Aplikasi Praktis</h4>
+                    <p className="text-sm text-orange-800">
+                      Pengguna melaporkan kesulitan dalam menerapkan pembelajaran dalam konteks dunia nyata, 
+                      menunjukkan kurangnya transfer pengetahuan yang efektif.
+                    </p>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-lg">
+                    <h4 className="font-semibold text-yellow-900 mb-2">Konten Repetitif dan Monoton</h4>
+                    <p className="text-sm text-yellow-800">
+                      Sifat repetitif konten menyebabkan kebosanan dan frustrasi, menghambat penggunaan berkelanjutan 
+                      dan mengurangi efektivitas pembelajaran.
+                    </p>
+                  </div>
+                  <div className="p-4 bg-purple-50 border-l-4 border-purple-400 rounded-r-lg">
+                    <h4 className="font-semibold text-purple-900 mb-2">Gamifikasi Superfisial</h4>
+                    <p className="text-sm text-purple-800">
+                      Elemen gamifikasi, meskipun menarik pada awalnya, terbukti tidak cukup untuk motivasi jangka panjang 
+                      dan tidak memberikan nilai pembelajaran yang substansial.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Triangulation Methodology */}
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
+              <h3 className="text-lg font-semibold text-blue-900 mb-4 flex items-center">
+                <BarChart3 className="mr-2 h-5 w-5" />
+                Metodologi Triangulasi Mixed-Methods
+              </h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-medium text-blue-800 mb-3">Analisis Kuantitatif</h4>
+                  <ul className="space-y-2 text-sm text-blue-700">
+                    <li>• <strong>Cronbach's Alpha:</strong> Reliabilitas instrumen (α = 0.74-0.95)</li>
+                    <li>• <strong>Korelasi Item-Total:</strong> Validitas konstruk</li>
+                    <li>• <strong>Uji Non-Parametrik:</strong> Kruskal-Wallis, Spearman's Rho</li>
+                    <li>• <strong>Bootstrap Regression:</strong> Prediksi robust dengan resampling</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-medium text-blue-800 mb-3">Analisis Kualitatif</h4>
+                  <ul className="space-y-2 text-sm text-blue-700">
+                    <li>• <strong>Open Coding:</strong> Identifikasi tema awal</li>
+                    <li>• <strong>Axial Coding:</strong> Pengkategorian tema</li>
+                    <li>• <strong>Thematic Analysis:</strong> Sintesis tema utama</li>
+                    <li>• <strong>Framework Integration:</strong> TPACK, FRAME, SDT</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Triangulation Results */}
+            <div>
+              <h3 className="text-lg font-semibold text-green-900 mb-4 flex items-center">
+                <TrendingUp className="mr-2 h-5 w-5" />
+                Hasil Triangulasi dan Temuan Terintegrasi
+              </h3>
+              <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-green-900 mb-2">Konvergensi Temuan</h4>
+                  <p className="text-sm text-green-800 mb-3">
+                    Integrasi data kuantitatif dan kualitatif menunjukkan pola konsisten: meskipun usability dan acceptance 
+                    relatif tinggi, engagement dan retention tetap rendah secara konsisten.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="bg-white p-3 rounded border-l-4 border-red-400">
+                      <div className="text-xs text-gray-600">TPACK Framework</div>
+                      <div className="text-sm font-medium text-gray-800">Ketidakseimbangan antara fitur teknologi dan efektivitas pedagogis</div>
+                    </div>
+                    <div className="bg-white p-3 rounded border-l-4 border-yellow-400">
+                      <div className="text-xs text-gray-600">FRAME Framework</div>
+                      <div className="text-sm font-medium text-gray-800">Kurangnya interaksi sosial dan konteks dalam desain MLLA</div>
+                    </div>
+                    <div className="bg-white p-3 rounded border-l-4 border-blue-400">
+                      <div className="text-xs text-gray-600">SDT Framework</div>
+                      <div className="text-sm font-medium text-gray-800">Masalah motivasi ekstrinsik dan kurangnya dukungan komunitas</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-purple-900 mb-2">Insight Kunci dari Triangulasi</h4>
+                  <div className="space-y-2 text-sm text-purple-800">
+                    <p>• <strong>Gap Ekspektasi-Realitas:</strong> Non-pengguna memiliki ekspektasi berlebihan yang tidak terpenuhi oleh pengalaman aktual</p>
+                    <p>• <strong>Paradoks Usability-Engagement:</strong> Kemudahan penggunaan tinggi tidak otomatis menghasilkan keterlibatan berkelanjutan</p>
+                    <p>• <strong>Pentingnya Konteks:</strong> Pembelajaran yang terisolasi dari konteks dunia nyata mengurangi retensi dan aplikasi praktis</p>
+                    <p>• <strong>Kebutuhan Sosial:</strong> Kurangnya elemen sosial dan kolaboratif menjadi faktor utama dalam penurunan motivasi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* TRIANGULATION RESULT DOCUMENTS */}
+            <div className="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-indigo-900 mb-4 flex items-center">
+                <MessageSquare className="mr-2 h-5 w-5" />
+                TRIANGULATION RESULT DOCUMENTS
+              </h3>
+              <div className="space-y-4">
+                <div className="bg-white p-4 rounded-lg border border-indigo-100">
+                  <h4 className="font-medium text-indigo-800 mb-3">Dokumen Hasil Triangulasi</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <h5 className="font-semibold text-gray-700 mb-2">Validasi Konvergen</h5>
+                      <ul className="space-y-1 text-gray-600">
+                        <li>• Konsistensi temuan lintas metode</li>
+                        <li>• Konfirmasi pola UX yang menurun</li>
+                        <li>• Validasi framework teoritis</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-gray-700 mb-2">Eksplorasi Divergen</h5>
+                      <ul className="space-y-1 text-gray-600">
+                        <li>• Kontradiksi expectasi vs realitas</li>
+                        <li>• Variasi pengalaman antar aplikasi</li>
+                        <li>• Nuansa kontekstual yang kompleks</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-emerald-900 mb-2">Rekomendasi Berdasarkan Triangulasi</h4>
+                  <div className="text-sm text-emerald-800 space-y-2">
+                    <p>• <strong>Integrasi GIS-MLLA:</strong> Pengembangan framework yang mengintegrasikan pembelajaran berbasis lokasi untuk mengatasi kurangnya konteks</p>
+                    <p>• <strong>Desain User-Centered:</strong> Fokus pada pengalaman pengguna holistik, bukan hanya fitur teknologi</p>
+                    <p>• <strong>Pembelajaran Sosial-Kontekstual:</strong> Implementasi fitur kolaboratif dan pembelajaran berbasis situasi nyata</p>
+                    <p>• <strong>Evaluasi Berkelanjutan:</strong> Monitoring longitudinal untuk mengukur dampak perbaikan terhadap retensi dan engagement</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
       <Card className="border-0 shadow-lg bg-gradient-to-r from-blue-50 to-indigo-100">
         <CardHeader>
           <CardTitle className="flex items-center text-blue-900">
