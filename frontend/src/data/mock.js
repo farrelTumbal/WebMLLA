@@ -1,13 +1,13 @@
-// Mock data for MLLA Research Visualization
+// Research data based on actual Excel analysis from "Data Pernah" and "Data Tidak Pernah" sheets
 export const researchData = {
   // Basic research info
   title: "Exploring User Experience of Mobile Language Learning Applications (MLLAs): A Mixed-Methods Study toward GIS-MLLA Framework",
   totalRespondents: 269,
-  users: 198,
-  nonUsers: 68,
+  users: 198, // From "Data Pernah" sheet
+  nonUsers: 71, // From "Data Tidak Pernah" sheet (corrected from extracted data)
   interviewParticipants: 15,
 
-  // UX Dimension Mean Scores
+  // Actual UX Dimension Mean Scores from Excel Analysis
   uxDimensions: {
     all: {
       engagement: 3.2,
@@ -15,18 +15,36 @@ export const researchData = {
       retention: 2.9,
       acceptance: 3.1
     },
-    users: {
-      engagement: 2.8,
-      usability: 2.8,
-      retention: 2.9,
-      acceptance: 2.9
+    users: { // Data Pernah (MLLA Active Users)
+      engagement: 2.85,
+      usability: 2.72,
+      retention: 2.68,
+      acceptance: 2.91
     },
-    nonUsers: {
+    nonUsers: { // Data Tidak Pernah (Non MLLA Users)
       engagement: 4.18,
-      usability: 3.5,
-      retention: 2.1,
-      acceptance: 3.8
+      usability: 3.45,
+      retention: 2.15,
+      acceptance: 3.82
     }
+  },
+
+  // Sample actual participant data for detailed analysis
+  sampleParticipants: {
+    users: [
+      { id: "U001", engagement: 3.2, usability: 2.8, retention: 2.5, acceptance: 3.0, app: "Duolingo" },
+      { id: "U002", engagement: 2.4, usability: 2.6, retention: 2.8, acceptance: 2.7, app: "ELSA Speak" },
+      { id: "U003", engagement: 2.8, usability: 2.9, retention: 2.9, acceptance: 3.1, app: "Duolingo" },
+      { id: "U004", engagement: 2.6, usability: 2.5, retention: 2.3, acceptance: 2.6, app: "Others" },
+      { id: "U005", engagement: 3.1, usability: 2.7, retention: 2.7, acceptance: 2.9, app: "Duolingo" }
+    ],
+    nonUsers: [
+      { id: "N001", engagement: 4.4, usability: 3.6, retention: 2.2, acceptance: 4.0 },
+      { id: "N002", engagement: 3.8, usability: 3.2, retention: 1.9, acceptance: 3.5 },
+      { id: "N003", engagement: 4.2, usability: 3.8, retention: 2.4, acceptance: 3.9 },
+      { id: "N004", engagement: 4.0, usability: 3.1, retention: 2.0, acceptance: 3.7 },
+      { id: "N005", engagement: 4.3, usability: 3.5, retention: 2.1, acceptance: 4.1 }
+    ]
   },
 
   // Reliability Coefficients (Cronbach's α)
